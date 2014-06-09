@@ -21,3 +21,7 @@ Contributions are welcome.
 ## License
 
 Too is available under the [BSD (3-Clause) License](http://opensource.org/licenses/BSD-3-Clause).
+
+## Inspiration
+
+This project is inspired by the very existence of the awesome project [Recommendable](http://davidcel.is/recommendable/).
