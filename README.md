@@ -1,5 +1,7 @@
 # Too
 
+[![Build Status](https://drone.io/github.com/hjr265/too/status.png)](https://drone.io/github.com/hjr265/too/latest)
+
 Too is a simple recommendation engine built on top of Redis in Go.
 
 ## Installation
