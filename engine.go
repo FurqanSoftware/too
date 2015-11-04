@@ -2,11 +2,7 @@
 
 package too
 
-import (
-	"net"
-
-	"github.com/garyburd/redigo/redis"
-)
+import "github.com/garyburd/redigo/redis"
 
 type Engine struct {
 	c     redis.Conn
@@ -20,8 +16,8 @@ type Engine struct {
 }
 
 // New returns a new engine for given class connected to Redis server at addr.
-func New(addr net.Addr, class string) (*Engine, error) {
-	c, err := redis.Dial(addr.Network(), addr.String())
+func New(url, class string) (*Engine, error) {
+	c, err := redis.DialURL(url)
 	if err != nil {
 		return nil, err
 	}
