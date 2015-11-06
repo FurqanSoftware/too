@@ -15,8 +15,7 @@ The only dependencies are Go distribution and [Redis](http://redis.io).
 ## Usage
 
 ```go
-redisAddr, _ := net.ResolveTCPAddr("tcp", ":6379")
-te, err := too.New(redisAddr, "movies")
+te, err := too.New("redis://localhost", "movies")
 if err != nil {
 	log.Fatal(err)
 }
