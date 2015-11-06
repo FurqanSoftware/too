@@ -5,14 +5,12 @@ package too_test
 import (
 	"fmt"
 	"log"
-	"net"
 
 	"github.com/hjr265/too"
 )
 
 func ExampleEngine() {
-	redisAddr, _ := net.ResolveTCPAddr("tcp", ":6379")
-	te, err := too.New(redisAddr, "movies")
+	te, err := too.New("redis://localhost", "movies")
 	if err != nil {
 		log.Fatal(err)
 	}
