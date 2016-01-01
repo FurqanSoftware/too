@@ -8,6 +8,8 @@ type Engine struct {
 	c     redis.Conn
 	class string
 
+	autoUpdateSimilarsAndSuggestions bool
+
 	Likes    Rater
 	Dislikes Rater
 
@@ -25,10 +27,32 @@ func New(url, class string) (*Engine, error) {
 	e := &Engine{
 		c:     c,
 		class: class,
+		autoUpdateSimilarsAndSuggestions: true,
 	}
-	e.Likes = Rater{e, "likes"}
-	e.Dislikes = Rater{e, "dislikes"}
+	e.Likes = Rater{e, "likes", nil}
+	e.Dislikes = Rater{e, "dislikes", nil}
 	e.Similars = Similars{e}
 	e.Suggestions = Suggestions{e}
 	return e, nil
+}
+
+func (e *Engine) DisableAutoUpdateSimilarsAndSuggestions() {
+	e.autoUpdateSimilarsAndSuggestions = false
+}
+
+func (e *Engine) EnableAutoUpdateSimilarsAndSuggestions() {
+	e.autoUpdateSimilarsAndSuggestions = true
+}
+
+func (e Engine) Update(user User) error {
+	err := e.Similars.update(user)
+	if err != nil {
+		return err
+	}
+
+	err = e.Suggestions.update(user)
+	if err != nil {
+		return err
+	}
+	return nil
 }

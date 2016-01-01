@@ -49,6 +49,46 @@ for _, item := range items {
 // The Shawshank Redemption
 // The Matrix
 ```
+### Batch Operations
+
+``` go
+te, err := too.New("redis://localhost", "movies")
+if err != nil {
+	log.Fatal(err)
+}
+
+te.Likes.Batch([]too.BatchRaterOp{
+  {
+    User: "Sonic",
+    Items: []too.Item{
+      "The Shawshank Redemption",
+      "The Godfather",
+      "The Dark Knight",
+      "Pulp Fiction",
+    },
+  },
+  {
+    User: "Mario",
+    Items: []too.Item{
+      "The Godfather",
+      "The Dark Knight",
+      "The Shawshank Redemption",
+      "The Prestige",
+      "The Matrix",
+    },
+  },
+  {
+    User: "Peach",
+    Items: []too.Item{
+      "The Godfather",
+      "Inception",
+      "Fight Club",
+      "WALL·E",
+      "Princess Mononoke",
+    },
+  },
+}, true) // The last command is about auto update the similars and Suggestions table
+```
 
 ## Documentation
 
