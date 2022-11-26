@@ -66,7 +66,7 @@ func (s Suggestions) update(user User) error {
 			scores[item] += score
 		}
 
-		dislikers, err := redis.Strings(s.e.c.Do("SMEMBERS", fmt.Sprintf("%s:%s:%s", s.e.class, item, s.e.Likes.kind)))
+		dislikers, err := redis.Strings(s.e.c.Do("SMEMBERS", fmt.Sprintf("%s:%s:%s", s.e.class, item, s.e.Dislikes.kind)))
 		if err != nil && err != redis.ErrNil {
 			return err
 		}
